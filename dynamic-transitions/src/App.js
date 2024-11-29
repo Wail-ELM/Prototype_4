@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import StartScreen from "./components/StartScreen";
 import FadeInOut from "./components/FadeInOut";
+import Articles from "./components/Articles";
+import DistortedImages from "./components/DistortedImages";
+import TypewriterEffect from "./components/Typewriter";
 
 function App() {
   const [experienceStarted, setExperienceStarted] = useState(false);
@@ -12,6 +15,9 @@ function App() {
       ) : (
         <>
           <FadeInOut />
+          <TypewriterEffect />
+          <Articles />
+          <DistortedImages />
         </>
       )}
     </div>

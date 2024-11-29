@@ -58,3 +58,36 @@ code {
   position: absolute;
   font-size: 2rem;
 }
+
+.typewriter {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin: 20px;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.article {
+  background: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.images {
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 600px;
+  transition: filter 0.3s;
+}
