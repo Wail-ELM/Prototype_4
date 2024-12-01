@@ -6,7 +6,7 @@ const TypewriterEffect = () => {
     <div className="typewriter">
       <Typewriter
         options={{
-          strings: ["Welcome to you!", "Enjoy your time!"],
+          strings: ["Welcome to the Animation Experience.", "Explore dynamic transitions."],
           autoStart: true,
           loop: true,
         }}

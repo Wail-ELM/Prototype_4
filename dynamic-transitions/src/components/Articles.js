@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 const Articles = () => {
-  React.useEffect(() => {
-    gsap.from(".article", {
-      duration: 1,
-      opacity: 0,
-      y: 50,
-      stagger: 0.2,
-    });
+  const articlesRef = useRef([]);
+
+  useEffect(() => {
+    gsap.fromTo(
+      articlesRef.current,
+      { clipPath: "circle(0% at 50% 50%)" },
+      {
+        clipPath: "circle(150% at 50% 50%)",
+        duration: 1.5,
+        stagger: 0.3,
+        ease: "power2.out",
+      }
+    );
   }, []);
 
   return (
     <div className="articles">
-      <div className="article">Article 1</div>
-      <div className="article">Article 2</div>
-      <div className="article">Article 3</div>
+      {["Article 1", "Article 2", "Article 3", "Article 4"].map((article, index) => (
+        <div
+          key={index}
+          className="article"
+          ref={(el) => (articlesRef.current[index] = el)}
+        >
+          {article}
+        </div>
+      ))}
     </div>
   );
 };

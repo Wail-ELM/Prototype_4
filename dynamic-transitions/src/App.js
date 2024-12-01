@@ -1,24 +1,36 @@
-import React, { useState } from "react";
-import StartScreen from "./components/StartScreen";
-import FadeInOut from "./components/FadeInOut";
-import Articles from "./components/Articles";
-import DistortedImages from "./components/DistortedImages";
-import TypewriterEffect from "./components/Typewriter";
+import React, { useState, useEffect } from 'react';
+import StartScreen from './components/StartScreen';
+import FadeInOut from './components/FadeInOut';
+import TypewriterEffect from './components/TypewriterEffect';
+import Articles from './components/Articles';
+import { gsap } from 'gsap';
 
 function App() {
-  const [experienceStarted, setExperienceStarted] = useState(false);
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    if (start) {
+      const timeline = gsap.timeline();
+      timeline
+        .fromTo(".fade-container", { opacity: 0 }, { opacity: 1, duration: 1 })
+        .fromTo(".typewriter", { opacity: 0 }, { opacity: 1, duration: 1 }, "+=0.5");
+
+      return () => {
+        timeline.kill(); 
+      };
+    }
+  }, [start]);
 
   return (
     <div className="App">
-      {!experienceStarted ? (
-        <StartScreen startExperience={() => setExperienceStarted(true)} />
+      {!start ? (
+        <StartScreen onStart={() => setStart(true)} />
       ) : (
-        <>
-          <FadeInOut />
-          <TypewriterEffect />
-          <Articles />
-          <DistortedImages />
-        </>
+        <div className="main-content">
+          <FadeInOut key="fade" />
+          <TypewriterEffect key="typewriter" />
+          <Articles key="articles" />
+        </div>
       )}
     </div>
   );
